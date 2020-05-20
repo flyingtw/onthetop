@@ -3,20 +3,23 @@ package com.onthetop.domain;
 import java.sql.Timestamp;
 
 public class Board {
-	private int num;
+	private Integer num;
 	private String name;
 	private String passwd;
 	private String subject;
 	private String content;
 	private String ip;
 	private Timestamp reg_date;
-	private int readcount;
+	private Integer readcount;
+	private Integer re_ref;
+	private Integer re_lev;
+	private Integer re_seq;
+	private String filename;
 	
-	
-	public int getNum() {
+	public Integer getNum() {
 		return num;
 	}
-	public void setNum(int num) {
+	public void setNum(Integer num) {
 		this.num = num;
 	}
 	public String getName() {
@@ -55,11 +58,35 @@ public class Board {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
-	public int getReadcount() {
+	public Integer getReadcount() {
 		return readcount;
 	}
-	public void setReadcount(int readcount) {
+	public void setReadcount(Integer readcount) {
 		this.readcount = readcount;
+	}
+	public Integer getRe_ref() {
+		return re_ref;
+	}
+	public void setRe_ref(Integer re_ref) {
+		this.re_ref = re_ref;
+	}
+	public Integer getRe_lev() {
+		return re_lev;
+	}
+	public void setRe_lev(Integer re_lev) {
+		this.re_lev = re_lev;
+	}
+	public Integer getRe_seq() {
+		return re_seq;
+	}
+	public void setRe_seq(Integer re_seq) {
+		this.re_seq = re_seq;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	
 }
