@@ -51,6 +51,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- JSP를 사용하기 위한 dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
