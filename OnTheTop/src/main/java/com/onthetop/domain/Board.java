@@ -3,18 +3,18 @@ package com.onthetop.domain;
 import java.sql.Timestamp;
 
 public class Board {
-	private Integer num;
-	private String name;
-	private String passwd;
-	private String subject;
-	private String content;
-	private String ip;
-	private Timestamp reg_date;
-	private Integer readcount;
-	private Integer re_ref;
-	private Integer re_lev;
-	private Integer re_seq;
-	private String filename;
+	private Integer num;	//게시물 번호
+	private String name;	//작성자
+	private String passwd;	//비밀번호
+	private String subject;	//제목
+	private String content;	//내용
+	private String ip;	//작성 ip
+	private Timestamp reg_date;	//작성일
+	private Integer readcount;	//조회수
+	private Integer re_ref;	//댓글번호
+	private Integer re_lev;	//댓글 레벨
+	private Integer re_seq;	//댓글 번호
+	private String filename;	//첨부파일 이름
 	
 	public Integer getNum() {
 		return num;
