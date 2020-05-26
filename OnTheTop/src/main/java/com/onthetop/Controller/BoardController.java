@@ -105,4 +105,15 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	@RequestMapping("detail")
+	public String detail(@RequestParam int num, Model model) {
+
+		boardService.updateReadCount(num);
+		Board board = boardService.getBoard(num);
+
+		model.addAttribute("board", board);
+
+		return "board/content";
+	}
+
 }

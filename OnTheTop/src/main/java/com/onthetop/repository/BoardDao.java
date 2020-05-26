@@ -3,6 +3,7 @@ package com.onthetop.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,6 +50,21 @@ public class BoardDao {
 	public int count() {
 		int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM board", Integer.class);
 		return count;
+	}
+
+	public Board getBoard(int num) {
+		try {
+			Board board = jdbcTemplate.queryForObject("SELECT * FROM board WHERE num=?",
+					new BeanPropertyRowMapper<Board>(Board.class), num);
+			return board;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void updateReadCount(int num) {
+		jdbcTemplate.update("UPDATE board SET readcount = readcount + 1 WHERE num = ?", num);
 	}
 
 }

@@ -40,4 +40,12 @@ public class BoardService {
 		return boardDao.count();
 	}
 
+	public void updateReadCount(int num) {
+		boardDao.updateReadCount(num);
+	}
+
+	public Board getBoard(int num) {
+		return boardDao.getBoard(num);
+	}
+
 }
