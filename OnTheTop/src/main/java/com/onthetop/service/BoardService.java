@@ -48,4 +48,30 @@ public class BoardService {
 		return boardDao.getBoard(num);
 	}
 
+	public int updateBoard(Board board) {
+		Board boardDB = boardDao.getBoard(board.getNum());
+
+		int check = 0;
+		if (board.getPasswd().equals(boardDB.getPasswd())) {
+			boardDao.updateBoard(board);
+			check = 1;
+		} else {
+			check = 0;
+		}
+		return check;
+	}
+	
+	public int deleteBoard(int num, String passwd) {
+		Board boardDB = boardDao.getBoard(num);
+
+		int check = 0;
+		if (passwd.equals(boardDB.getPasswd())) {
+			boardDao.deleteBoard(num);
+			check = 1;
+		} else {
+			check = 0;
+		}
+		return check;
+	}
+
 }

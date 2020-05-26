@@ -67,4 +67,15 @@ public class BoardDao {
 		jdbcTemplate.update("UPDATE board SET readcount = readcount + 1 WHERE num = ?", num);
 	}
 
+	public int updateBoard(Board board) {
+		int rowCount = namedParameterJdbcTemplate
+				.update("UPDATE board SET name = :name, subject = :subject, content = :content,"
+						+ "filename = :filename WHERE num = :num", new BeanPropertySqlParameterSource(board));
+		return rowCount;
+	}
+
+	public void deleteBoard(int num) {
+		jdbcTemplate.update("DELETE FROM board WHERE num=?", num);
+	}
+
 }
