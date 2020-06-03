@@ -2,7 +2,6 @@ package com.onthetop.Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.sql.Timestamp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	@RequestMapping(value = "list")
-	public String boardList(Model model) {
+	public String boardList(Model model) throws Exception {
 		model.addAttribute("list", boardService.getBoardList());
 		return "board/list";
 	}
@@ -68,10 +67,10 @@ public class BoardController {
 
 		board.setFilename(filename);
 
-		board.setReg_date(new Timestamp(System.currentTimeMillis()));
+		/* board.setReg_date(new Timestamp(System.currentTimeMillis())); */
 		board.setIp(request.getRemoteAddr());
 
-		boardService.add(board);
+		boardService.insertBoard(board);
 
 		return "redirect:/board/list";
 	}

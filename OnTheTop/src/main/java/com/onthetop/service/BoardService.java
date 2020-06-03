@@ -14,12 +14,12 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
-	public List<Board> getBoardList() {
+	public List<Board> getBoardList() throws Exception {
 		return boardDao.getBoardList();
 	}
 
-	public Board add(Board board) {
-		return boardDao.insertBoard();
+	public void insertBoard(Board board) throws Exception {
+		boardDao.insertBoard(board);
 	}
 
 }

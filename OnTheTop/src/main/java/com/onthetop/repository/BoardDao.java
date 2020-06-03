@@ -9,8 +9,8 @@ import com.onthetop.domain.Board;
 @Repository
 public interface BoardDao {
 
-	List<Board> getBoardList();
+	public List<Board> getBoardList() throws Exception;
 
-	Board insertBoard();
-	
+	public void insertBoard(Board board) throws Exception;
+
 }

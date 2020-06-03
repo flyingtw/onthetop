@@ -13,8 +13,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertBoard">
-	INSERT VALUES INTO board
-	<!-- 컬럼명 -->
+	INSERT INTO board(
+	name,
+	passwd,
+	subject,
+	content,
+	ip,
+	reg_date,
+	readcount,
+	filename
+	)
+	VALUES(
+	#{name},
+	#{passwd},
+	#{subject},
+	#{content},
+	#{ip},
+	SYSDATE(),
+	#{readcount},
+	#{filename}
+	)
 	</insert>
 
 </mapper>
