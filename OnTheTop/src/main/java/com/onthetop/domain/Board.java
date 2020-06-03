@@ -11,9 +11,6 @@ public class Board {
 	private String ip;	//작성 ip
 	private Timestamp reg_date;	//작성일
 	private Integer readcount;	//조회수
-	private Integer re_ref;	//댓글번호
-	private Integer re_lev;	//댓글 레벨
-	private Integer re_seq;	//댓글 번호
 	private String filename;	//첨부파일 이름
 	
 	public Integer getNum() {
@@ -63,24 +60,6 @@ public class Board {
 	}
 	public void setReadcount(Integer readcount) {
 		this.readcount = readcount;
-	}
-	public Integer getRe_ref() {
-		return re_ref;
-	}
-	public void setRe_ref(Integer re_ref) {
-		this.re_ref = re_ref;
-	}
-	public Integer getRe_lev() {
-		return re_lev;
-	}
-	public void setRe_lev(Integer re_lev) {
-		this.re_lev = re_lev;
-	}
-	public Integer getRe_seq() {
-		return re_seq;
-	}
-	public void setRe_seq(Integer re_seq) {
-		this.re_seq = re_seq;
 	}
 	public String getFilename() {
 		return filename;

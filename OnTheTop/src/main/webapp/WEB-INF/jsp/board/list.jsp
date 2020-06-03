@@ -46,15 +46,9 @@ div#PageBlock {
 				<c:forEach var="board" items="${list}">
 					<tr>
 						<td>${board.num}</td>
-						<td><c:if test="${board.re_lev gt 0}">
-								<c:set var="wid" value="${board.re_lev * 10}"></c:set>
-								<img src="../images/level.gif"
-									style="width: ${wid}px; height:16px;">
-								<img src="../images/re.gif">
-							</c:if> <a href="detail?num=${board.num}&pageNum=${pageInfo.pageNum}">${board.subject}</a>
-						</td>
+						<td>${board.subject}</td>
 						<td>${board.name}</td>
-						<td><fmt:formatDate value="${board.re_date}"
+						<td><fmt:formatDate value="${board.reg_date}"
 								pattern="yyyy-MM-dd" /></td>
 						<td>${board.readcount}</td>
 						<td>${board.ip}</td>
