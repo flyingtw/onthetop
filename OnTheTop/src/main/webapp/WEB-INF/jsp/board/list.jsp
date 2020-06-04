@@ -46,7 +46,7 @@ div#PageBlock {
 				<c:forEach var="board" items="${list}">
 					<tr>
 						<td>${board.num}</td>
-						<td>${board.subject}</td>
+						<td><a href="detail?num=${board.num}">${board.subject}</a></td>
 						<td>${board.name}</td>
 						<td><fmt:formatDate value="${board.regDate}"
 								pattern="yyyy-MM-dd" /></td>
