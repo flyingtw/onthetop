@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 			<th>작성자</th>
 			<td>${board.name}</td>
 			<th>작성일</th>
-			<td><fmt:formatDate value="${board.reg_date}"
+			<td><fmt:formatDate value="${board.regDate}"
 					pattern="yyyy-MM-dd" /></td>
 		</tr>
 		<tr>
@@ -30,20 +31,25 @@
 		</tr>
 		<tr>
 			<th>파일</th>
-			<td colspan="3"><a href="upload/${board.filename}">${board.filename}</a>
-				<img src="upload/${board.filename}" width="50" height="50"></td>
+			<td colspan="3"><c:choose>
+					<c:when test="${not empty board.filename}">
+						<a href="upload/${board.filename}">${board.filename}</a>
+						<img src="upload/${board.filename}" width="50" height="50">
+					</c:when>
+					<c:otherwise>첨부파일 없음</c:otherwise>
+				</c:choose></td>
 		</tr>
 		<tr>
 			<th>글내용</th>
-			<td colspan="3"><pre>${board.num}</pre></td>
+			<td colspan="3"><pre>${board.content}</pre></td>
 		</tr>
 		<tr>
 			<td colspan="4"><input type="button" value="글 수정"
 				onclick="location.href='update?num=${board.num}&pageNum=${param.pageNum}'">
 				<input type="button" value="글 삭제"
 				onclick="location.href='delete?num=${board.num}&pageNum=${param.pageNum}'">
-				<input type="button" value="답글쓰기"
-				onclick="location.href='reAdd?re_ref=${board.re_ref}&re_lev=${board.re_lev}&re_seq=${board.re_seq}&pageNum=${param.pageNum}'">
+				<%-- <input type="button" value="답글쓰기"
+				onclick="location.href='reAdd?re_ref=${board.re_ref}&re_lev=${board.re_lev}&re_seq=${board.re_seq}&pageNum=${param.pageNum}'"> --%>
 				<input type="button" value="글 목록"
 				onclick="location.href='list?pageNum=${param.pageNum}'"></td>
 		</tr>
