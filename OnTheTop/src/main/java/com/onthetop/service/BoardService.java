@@ -22,4 +22,25 @@ public class BoardService {
 		boardDao.insertBoard(board);
 	}
 
+	public void updateReadCount(int num) throws Exception {
+		boardDao.updateReadCount(num);
+	}
+
+	public Board getBoardDetail(int num) throws Exception {
+		return boardDao.getBoardDetail(num);
+	}
+
+	public int updateBoard(Board board) throws Exception {
+		Board boardDB = boardDao.getBoardDetail(board.getNum());
+
+		int check = 0;
+		if (board.getPasswd().equals(boardDB.getPasswd())) {
+			boardDao.updateBoard(board);
+			check = 1;
+		} else {
+			check = 0;
+		}
+		return check;
+	}
+
 }

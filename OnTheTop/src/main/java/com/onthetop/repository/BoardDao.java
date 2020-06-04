@@ -13,4 +13,10 @@ public interface BoardDao {
 
 	public void insertBoard(Board board) throws Exception;
 
+	public void updateReadCount(int num) throws Exception;
+
+	public Board getBoardDetail(int num) throws Exception;
+
+	public void updateBoard(Board board) throws Exception;
+
 }
