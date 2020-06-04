@@ -7,6 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function check() {
+		if (frm.name.value == '') {
+			alert('글쓴이를 입력하세요.');
+			frm.name.focus();
+			return false;
+		}
+		if (frm.passwd.value == '') {
+			alert('패스워드를 입력하세요.');
+			frm.passwd.focus();
+			return false;
+		}
+		if (frm.detail.value == '') {
+			alert('내용을 입력하세요.');
+			frm.content.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<h1>글 내용보기</h1>
@@ -54,5 +73,42 @@
 				onclick="location.href='list?pageNum=${param.pageNum}'"></td>
 		</tr>
 	</table>
+	<br>
+	<c:if test="${not empty reply}">
+		<table>
+			<tr>
+				<th>글쓴이</th>
+				<th>댓글 내용</th>
+				<th>작성 시간</th>
+			</tr>
+			<c:forEach var="re" items="${reply}">
+				<tr>
+					<td>${re.name}</td>
+					<td>${re.detail}</td>
+					<td>${re.regDate}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
+	<form action="reAdd" method="post" onsubmit="return check()" name="frm">
+	<input type="hidden" id="boardNum" name="boardNum" value="${board.num}"/>
+		<table border="1">
+			<tr>
+				<th>글쓴이</th>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<th>패스워드</th>
+				<td><input type="password" name="passwd"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><input type="text" name="detail"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="글쓰기"></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
