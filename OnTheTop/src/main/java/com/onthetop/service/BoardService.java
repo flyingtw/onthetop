@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.onthetop.domain.Board;
+import com.onthetop.domain.Reply;
 import com.onthetop.repository.BoardDao;
 
 @Service
@@ -54,6 +55,14 @@ public class BoardService {
 			check = 0;
 		}
 		return check;
+	}
+
+	public List<Reply> getReply(int num) throws Exception {
+		return boardDao.getReply(num);
+	}
+
+	public void insertReply(Reply reply) throws Exception {
+		boardDao.insertReply(reply);
 	}
 
 }

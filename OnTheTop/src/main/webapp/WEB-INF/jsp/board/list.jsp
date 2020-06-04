@@ -30,7 +30,7 @@ div#PageBlock {
 	<h1>글목록(전체글: ${pageInfo.count})</h1>
 	<hr>
 	<h3>
-		<a href="add?pageNum=${pageInfo.pageNum}">파일업로드 글쓰기</a>
+		<a href="add?pageNum=${pageInfo.pageNum}">글쓰기</a>
 	</h3>
 	<table border="1">
 		<tr>
@@ -66,7 +66,7 @@ div#PageBlock {
 	<c:if test="${pageInfo.count gt 0}">
 		<div id="PageBlock">
 			<c:if test="${pageInfo.startPage gt pageInfo.pageBlock}">
-				<a href="list?pageNum=${pageInfo.startPage-PageInfo.pageBlock}">[이전]</a>
+				<a href="list?pageNum=${pageInfo.startPage-pageInfo.pageBlock}">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${pageInfo.startPage}"
 				end="${pageInfo.endPage}" step="1">

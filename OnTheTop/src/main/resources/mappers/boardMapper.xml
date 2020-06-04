@@ -72,4 +72,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		num=#{num}
 	</delete>
 
+	<select id="getReply" resultType="Reply">
+		SELECT
+		*
+		FROM
+		reply
+		WHERE
+		board_num=#{num}
+	</select>
+
+	<insert id="insertReply">
+		INSERT INTO reply(
+		board_num,
+		name,
+		detail,
+		ip,
+		reg_date,
+		passwd
+		)
+		VALUES(
+		#{boardNum},
+		#{name},
+		#{detail},
+		#{ip},
+		SYSDATE(),
+		#{passwd}
+		)
+	</insert>
+
 </mapper>

@@ -3,6 +3,7 @@ package com.onthetop.Controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.onthetop.domain.Board;
+import com.onthetop.domain.Reply;
 import com.onthetop.service.BoardService;
 
 @Controller
@@ -84,8 +86,10 @@ public class BoardController {
 
 		boardService.updateReadCount(num);
 		Board board = boardService.getBoardDetail(num);
+		List<Reply> reply = boardService.getReply(num);
 
 		model.addAttribute("board", board);
+		model.addAttribute("reply", reply);
 
 		return "board/Content";
 	}
@@ -146,6 +150,16 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list");
 		mav.addObject("pageNum", pageNum);
 		return mav;
+	}
+
+	@RequestMapping(value = "reAdd", method = RequestMethod.POST)
+	public String add(HttpServletRequest request, @ModelAttribute Reply reply) throws Exception {
+
+		reply.setIp(request.getRemoteAddr());
+
+		boardService.insertReply(reply);
+
+		return "redirect:/board/list";
 	}
 
 	/**
