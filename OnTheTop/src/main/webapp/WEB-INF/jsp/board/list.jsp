@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style>
 table {
-	width: 90px;
+	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -48,7 +48,7 @@ div#PageBlock {
 						<td>${board.num}</td>
 						<td>${board.subject}</td>
 						<td>${board.name}</td>
-						<td><fmt:formatDate value="${board.reg_date}"
+						<td><fmt:formatDate value="${board.regDate}"
 								pattern="yyyy-MM-dd" /></td>
 						<td>${board.readcount}</td>
 						<td>${board.ip}</td>

@@ -9,7 +9,7 @@ public class Board {
 	private String subject;	//제목
 	private String content;	//내용
 	private String ip;	//작성 ip
-	private Timestamp reg_date;	//작성일
+	private Timestamp regDate;	//작성일
 	private Integer readcount;	//조회수
 	private String filename;	//첨부파일 이름
 	
@@ -49,12 +49,6 @@ public class Board {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public Timestamp getReg_date() {
-		return reg_date;
-	}
-	public void setReg_date(Timestamp reg_date) {
-		this.reg_date = reg_date;
-	}
 	public Integer getReadcount() {
 		return readcount;
 	}
@@ -66,6 +60,12 @@ public class Board {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 	
 }

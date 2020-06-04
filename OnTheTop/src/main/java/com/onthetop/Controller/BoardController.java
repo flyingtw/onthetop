@@ -2,10 +2,12 @@ package com.onthetop.Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.sql.Timestamp;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.onthetop.domain.Board;
 import com.onthetop.service.BoardService;
@@ -28,7 +31,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	@RequestMapping(value = "list")
-	public String boardList(Model model) {
+	public String boardList(Model model) throws Exception {
 		model.addAttribute("list", boardService.getBoardList());
 		return "board/list";
 	}
@@ -68,12 +71,81 @@ public class BoardController {
 
 		board.setFilename(filename);
 
-		board.setReg_date(new Timestamp(System.currentTimeMillis()));
+		/* board.setReg_date(new Timestamp(System.currentTimeMillis())); */
 		board.setIp(request.getRemoteAddr());
 
-		boardService.add(board);
+		boardService.insertBoard(board);
 
 		return "redirect:/board/list";
+	}
+
+	@RequestMapping("detail")
+	public String detail(@RequestParam int num, Model model) throws Exception {
+
+		boardService.updateReadCount(num);
+		Board board = boardService.getBoardDetail(num);
+
+		model.addAttribute("board", board);
+
+		return "board/content";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(@RequestParam int num, Model model) throws Exception {
+		Board board = boardService.getBoardDetail(num); // 상세보기
+
+		model.addAttribute("board", board);
+
+		return "board/updateForm";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public ModelAndView update(@ModelAttribute Board board, @RequestParam String pageNum, HttpServletResponse response)
+			throws Exception {
+		int check = boardService.updateBoard(board);
+
+		if (check == 0) { // 패스워듭 불일치로 수정 실패
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('패스워드틀림');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
+
+		ModelAndView mav = new ModelAndView("redirect:/board/list");
+		mav.addObject("pageNum", pageNum);
+		return mav;
+
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete() {
+		return "board/deleteForm";
+	}
+
+	@RequestMapping(value = "delte", method = RequestMethod.POST)
+	public ModelAndView delete(@RequestParam int num, @RequestParam String passwd, @RequestParam String pageNum,
+			HttpServletResponse response) throws Exception {
+		int check = boardService.deleteBoard(num, passwd);
+
+		if (check == 0) { // 패스워듭 불일치로 수정 실패
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('패스워드틀림');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/board/list");
+		mav.addObject("pageNum", pageNum);
+		return mav;
 	}
 
 	/**
