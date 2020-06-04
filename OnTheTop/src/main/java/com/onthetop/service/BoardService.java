@@ -43,4 +43,17 @@ public class BoardService {
 		return check;
 	}
 
+	public int deleteBoard(int num, String passwd) throws Exception {
+		Board boardDB = boardDao.getBoardDetail(num);
+
+		int check = 0;
+		if (passwd.equals(boardDB.getPasswd())) {
+			boardDao.deleteBoard(num);
+			check = 1;
+		} else {
+			check = 0;
+		}
+		return check;
+	}
+
 }

@@ -63,4 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		num=#{num}
 	</update>
 
+	<delete id="deleteBoard">
+		DELETE
+		*
+		FROM
+		board
+		WHERE
+		num=#{num}
+	</delete>
+
 </mapper>

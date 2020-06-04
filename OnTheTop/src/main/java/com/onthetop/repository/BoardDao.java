@@ -19,4 +19,6 @@ public interface BoardDao {
 
 	public void updateBoard(Board board) throws Exception;
 
+	public void deleteBoard(int num) throws Exception;
+
 }
