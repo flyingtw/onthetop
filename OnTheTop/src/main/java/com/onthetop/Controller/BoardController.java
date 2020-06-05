@@ -130,7 +130,7 @@ public class BoardController {
 		return "board/deleteForm";
 	}
 
-	@RequestMapping(value = "delte", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(@RequestParam int num, @RequestParam String passwd, @RequestParam String pageNum,
 			HttpServletResponse response) throws Exception {
 		int check = boardService.deleteBoard(num, passwd);
@@ -160,6 +160,33 @@ public class BoardController {
 		boardService.insertReply(reply);
 
 		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value = "reDelete", method = RequestMethod.GET)
+	public String reDelete() {
+		return "board/replyDeleteForm";
+	}
+
+	@RequestMapping(value = "reDelete", method = RequestMethod.POST)
+	public ModelAndView reDelete(@RequestParam int reNum, @RequestParam String passwd, @RequestParam String pageNum,
+			HttpServletResponse response) throws Exception {
+		int check = boardService.deleteReply(reNum, passwd);
+
+		if (check == 0) { // 패스워듭 불일치로 수정 실패
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('패스워드틀림');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/board/list");
+		mav.addObject("pageNum", pageNum);
+		return mav;
 	}
 
 	/**

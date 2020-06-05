@@ -26,4 +26,8 @@ public interface BoardDao {
 
 	public void insertReply(Reply reply) throws Exception;
 
+	public void deleteReply(int reNum) throws Exception;
+
+	public Reply getReplyOne(int reNum) throws Exception;
+
 }

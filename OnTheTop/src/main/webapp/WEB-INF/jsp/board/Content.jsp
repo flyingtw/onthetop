@@ -80,18 +80,22 @@
 				<th>글쓴이</th>
 				<th>댓글 내용</th>
 				<th>작성 시간</th>
+				<th>삭제</th>
 			</tr>
 			<c:forEach var="re" items="${reply}">
 				<tr>
 					<td>${re.name}</td>
 					<td>${re.detail}</td>
 					<td>${re.regDate}</td>
+					<td><input type="button" value="댓글 삭제"
+						onclick="location.href='reDelete?reNum=${re.reNum}&pageNum=${param.pageNum}'"></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 	<form action="reAdd" method="post" onsubmit="return check()" name="frm">
-	<input type="hidden" id="boardNum" name="boardNum" value="${board.num}"/>
+		<input type="hidden" id="boardNum" name="boardNum"
+			value="${board.num}" />
 		<table border="1">
 			<tr>
 				<th>글쓴이</th>
