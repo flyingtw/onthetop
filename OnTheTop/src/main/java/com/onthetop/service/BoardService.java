@@ -65,4 +65,16 @@ public class BoardService {
 		boardDao.insertReply(reply);
 	}
 
+	public int deleteReply(int reNum, String passwd) throws Exception {
+		Reply replyDB = boardDao.getReplyOne(reNum);
+
+		int check = 0;
+		if (passwd.equals(replyDB.getPasswd())) {
+			boardDao.deleteReply(reNum);
+			check = 1;
+		} else
+			check = 0;
+		return check;
+	}
+
 }

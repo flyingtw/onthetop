@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		String str = "2020-06-04 댓글 조회, 추가 기능 완료!";
+		String str = "2020-06-09 댓글  기능 완료! 태완 test";
 	%>
 	<%=str%>
 </body>

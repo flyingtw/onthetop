@@ -100,4 +100,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
+	<delete id="deleteReply">
+		DELETE
+		*
+		FROM
+		reply
+		WHERE
+		re_num=#{reNum}
+	</delete>
+
+	<select id="getReplyOne" resultType="Reply">
+		SELECT
+		*
+		FROM
+		reply
+		WHERE
+		re_num=#{reNum}
+	</select>
+
 </mapper>
