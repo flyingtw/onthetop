@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		String str = "2020-06-16 안드로이드 통신 전용 Controller 생성! 제발";
+		String str = "2020-06-16 안드로이드 통신 전용 Controller 생성!!!";
 	%>
 	<%=str%>
 </body>
