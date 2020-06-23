@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		String str = "2020-06-09 댓글  기능 완료! 태완 test";
+		String str = "2020-06-16 안드로이드 통신 전용 Controller 생성!!!";
 	%>
 	<%=str%>
 </body>

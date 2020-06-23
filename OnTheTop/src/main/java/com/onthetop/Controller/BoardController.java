@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,9 @@ import com.onthetop.service.BoardService;
 
 @Controller
 @RequestMapping("board")
-public class BoardController {
+public class BoardController {	//게시판 Controller
+
+	private final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
 	private BoardService boardService;
@@ -62,12 +66,12 @@ public class BoardController {
 				file = new File(realPath, filename);
 			}
 
-			System.out.println("업로드 경로: " + realPath);
-			System.out.println("업로드 파일명: " + filename);
+			logger.debug("업로드 경로: " + realPath);
+			logger.debug("업로드 파일명: " + filename);
 
 			IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
 		} else {
-			System.out.println("파일이  존재하지 않거나 파일크기가 0 입니다.");
+			logger.debug("파일이  존재하지 않거나 파일크기가 0 입니다.");
 		}
 
 		board.setFilename(filename);
@@ -161,7 +165,7 @@ public class BoardController {
 
 		return "redirect:/board/list";
 	}
-	
+
 	@RequestMapping(value = "reDelete", method = RequestMethod.GET)
 	public String reDelete() {
 		return "board/replyDeleteForm";
